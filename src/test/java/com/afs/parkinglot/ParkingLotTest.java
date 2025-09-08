@@ -57,4 +57,19 @@ public class ParkingLotTest {
         //then
         assertNull(parkedCar);
     }
+
+    @Test
+    public void should_return_null_when_park_car_with_full_capacity_parking_log() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car = new Car("粤A12345111");
+        Car car2 = new Car("粤A12345112");
+        ParkingTicket ticket = new ParkingTicket(car, 1, parkingLot);
+        //when
+        ParkingTicket parkedCar = parkingLot.park(car);
+        ParkingTicket parkedCar2 = parkingLot.park(car2);
+        //then
+        assertEquals(ticket, parkedCar);
+        assertNull(parkedCar2);
+    }
 }
