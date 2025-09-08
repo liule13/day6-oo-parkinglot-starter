@@ -19,5 +19,18 @@ public class StandardParkingBoyTest {
         ParkingTicket expectedTicket = standardParkingBoy.park(car);
         assertEquals(ticket, expectedTicket);
     }
+    // AC: When the first parking lot is full, park into the second lot.
+    @Test
+    public void should_park_in_second_lot_when_first_lot_full() {
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(2);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        Car car1 = new Car("粤A12345");
+        Car car2 = new Car("粤B12345");
+        standardParkingBoy.park(car1);
+        ParkingTicket ticket = new ParkingTicket(car2, 1, parkingLot2);
+        ParkingTicket expectedTicket2 = standardParkingBoy.park(car2);
+        assertEquals(ticket, expectedTicket2);
+    }
 
 }
