@@ -103,5 +103,19 @@ public class StandardParkingBoyTest {
         assertNull(fetchedCar2);
         assertTrue(outContent.toString().contains("Unrecognized parking ticket."));
     }
-
+    // AC: Given two parking lots with parked cars and corresponding tickets, when fetching with the tickets, then return the correct cars.
+    @Test
+    public void should_return_right_car_when_fetch_two_car_with_two_parked_car_and_two_ticket() {
+        ParkingLot parkingLot1 = new ParkingLot(2);
+        ParkingLot parkingLot2 = new ParkingLot(2);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        Car car1 = new Car("粤A12345");
+        Car car2 = new Car("粤B12345");
+        ParkingTicket ticket1 = standardParkingBoy.park(car1);
+        ParkingTicket ticket2 = standardParkingBoy.park(car2);
+        Car fetchedCar1 = standardParkingBoy.fetch(ticket1);
+        Car fetchedCar2 = standardParkingBoy.fetch(ticket2);
+        assertEquals(car1, fetchedCar1);
+        assertEquals(car2, fetchedCar2);
+    }
 }
