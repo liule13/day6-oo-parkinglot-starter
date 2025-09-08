@@ -14,4 +14,14 @@ public record StandardParkingBoy(List<ParkingLot> parkingLots) {
         System.out.println("No available position.");
         return null;
     }
+
+    public Car fetch(ParkingTicket ticket) {
+        for (ParkingLot lot : parkingLots) {
+            if (lot.equals(ticket.parkingLot())) {
+                return lot.fetch(ticket);
+            }
+        }
+        System.out.println("Unrecognized parking ticket.");
+        return null;
 }
+    }
