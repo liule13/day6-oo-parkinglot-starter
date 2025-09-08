@@ -71,4 +71,18 @@ public class ParkingBoyTest {
         assertNull(fetchedCar);
         assertTrue(outContent.toString().contains("Unrecognized parking ticket."));
     }
+    // AC: Given a used parking ticket, when fetching, then return null and print "Unrecognized parking ticket.".
+    @Test
+    public void should_return_null_when_fetch_given_used_ticket() {
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car("粤A12345");
+        ParkingTicket ticket = parkingBoy.park(car);
+        parkingBoy.fetch(ticket);
+        Car fetchedCar = parkingBoy.fetch(ticket);
+
+        assertNull(fetchedCar);
+        assertTrue(outContent.toString().contains("Unrecognized parking ticket."));
+    }
+
 }
