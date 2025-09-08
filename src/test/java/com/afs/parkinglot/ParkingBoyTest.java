@@ -16,4 +16,15 @@ public class ParkingBoyTest {
 
         assertEquals(ticket, expectedTicket);
     }
+    @Test
+    public void should_return_car_when_fetch_given_valid_ticket() {
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car("粤A12345");
+        ParkingTicket ticket = parkingBoy.park(car);
+
+        Car fetchedCar = parkingBoy.fetch(ticket);
+
+        assertEquals(car, fetchedCar);
+    }
 }
