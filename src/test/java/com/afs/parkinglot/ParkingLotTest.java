@@ -29,4 +29,19 @@ public class ParkingLotTest {
         assertEquals(car, parkedCar);
     }
 
+    @Test
+    public void should_return_right_car_when_fetch_two_car_with_two_parked_car_and_two_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car("粤A12345");
+        Car car2 = new Car("粤B12345");
+        ParkingTicket ticket = parkingLot.park(car);
+        ParkingTicket ticket2 = parkingLot.park(car2);
+        //when
+        Car parkedCar = parkingLot.fetch(ticket);
+        Car parkedCar2 = parkingLot.fetch(ticket2);
+        //then
+        assertEquals(car, parkedCar);
+        assertEquals(car2, parkedCar2);
+    }
 }
