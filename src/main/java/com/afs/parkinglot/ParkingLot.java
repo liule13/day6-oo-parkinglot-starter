@@ -14,6 +14,11 @@ public class ParkingLot {
     public  ParkingLot() {
     }
     public ParkingTicket park(Car car) {
+        boolean isFull = ticketCars.size() >= capacity;
+        if (isFull) {
+            System.out.println("NNo available position.");
+            return null;
+        }
         return IntStream.rangeClosed(1, capacity)
                 .boxed().filter(position -> ticketCars.keySet().stream().noneMatch(ticket -> ticket.position().equals(position)))
                 .findFirst()
@@ -25,6 +30,10 @@ public class ParkingLot {
     }
 
     public Car fetch(ParkingTicket ticket) {
+        if (!ticketCars.containsKey(ticket)) {
+            System.out.println("Unrecognized parking ticket.");
+            return null;
+        }
         return ticketCars.remove(ticket);
     }
 }
